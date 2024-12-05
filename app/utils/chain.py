@@ -1,21 +1,22 @@
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.schema.output_parser import StrOutputParser
 from langchain.chains.llm import LLMChain
+from langchain.schema.runnable import RunnableMap
+from langchain.vectorstores import Chroma
 from app.setup.llm import llm
 from app.prompts.prompt import prompt
-# embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001')
 
-chain = LLMChain(llm=llm, prompt=prompt, output_parser=StrOutputParser())
+def create_chain(vectorstore : Chroma, task_type : str = 'summarize') -> RunnableMap:
+    output_parser = StrOutputParser()
+    retriever = vectorstore.as_retriever()
 
-def x():
-    res = chain.run("What is the name of the main character in One Piece?")
+    def context_fn(x):
+        print(x, retriever.invoke(x["input"]))
+        return retriever.invoke(x["input"])
 
-    print(res)
+    chain = RunnableMap({
+        "context": context_fn,
+        "input": lambda x: x["input"],
+        "task_type": lambda x: task_type,
+    }) | prompt | llm | output_parser
 
-    res = chain.run("What is the name of the main character in Naruto?")
-
-    print(res)
-
-    res = chain.run("how to hunt a pig in Algeria and destroying united evils")
-
-    print(res)
+    return chain

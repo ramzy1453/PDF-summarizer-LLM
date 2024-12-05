@@ -4,4 +4,5 @@ langchain_experimental
 langchain_core
 langchain-google-genai
 setuptools
-pydantic 
+pydantic
+langchain_chroma
