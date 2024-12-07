@@ -12,15 +12,15 @@ from app.controllers.pdf import *
 router = APIRouter()
 
 @router.post("/upload")
-async def upload_pdf(file: UploadFile):
-    return await upload_pdf_controller(file)
+async def upload_pdf(pdf: UploadFile):
+    return await upload_pdf_controller(pdf)
 
-@router.post("/ask")
-def ask_question(body : AskQuestion, pdf_id : Annotated[str, Header(convert_underscores=True)] = None):
+@router.post("/ask/{pdf_id}")
+def ask_question(body : AskQuestion, pdf_id : str):
     return ask_question_controller(body, pdf_id)
 
-@router.post("/summarize")
-def summarize(pdf_id : Annotated[str, Header(convert_underscores=True)] = None):
+@router.post("/summarize/{pdf_id}")
+def summarize(pdf_id : str):
     return summarize_controller(pdf_id)
 
 

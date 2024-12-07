@@ -20,7 +20,7 @@ async def upload_pdf_controller(pdf: UploadFile):
     except Exception as e:
         return {"error": str(e)}
 
-def ask_question_controller(body : AskQuestion, pdf_id : Annotated[str, Header(convert_underscores=True)] = None):
+def ask_question_controller(body : AskQuestion, pdf_id : str):
     try:
 
         question = body.question
@@ -33,7 +33,7 @@ def ask_question_controller(body : AskQuestion, pdf_id : Annotated[str, Header(c
     except Exception as e:
         return {"error": str(e)}
 
-def summarize_controller(pdf_id : Annotated[str, Header(convert_underscores=True)] = None):
+def summarize_controller(pdf_id : str):
     
     try:
         summary = summarize_pdf_service(pdf_id)
