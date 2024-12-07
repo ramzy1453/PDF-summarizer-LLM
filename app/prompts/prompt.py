@@ -1,25 +1,11 @@
 from langchain.prompts import ChatPromptTemplate
+import os
 
-template = """You are an expert assistant trained to analyze PDF documents. The user will provide a PDF, and your task is to do one of the following based on the user's request:
+with open('app/prompts/ask_prompt.txt', 'r') as f:
+    ask_template = f.read()
 
-1. Summarize the PDF content.
-2. Answer a specific question about the PDF content.
+with open('app/prompts/summarize_prompt.txt', 'r') as f:
+    summarize_template = f.read()
 
-Here is the content extracted from the PDF:
-{context}
-
-### User's Request
-The user wants you to: {task_type}
-
-- If the task is "Summarize," provide a concise summary (max 200 words).
-- If the task is "Answer a Question," provide a precise response to the question.
-
-### User's Question (if applicable)
-{input}
-
-### Your Response:
-(Your response goes here)
-"""
-
-
-prompt = ChatPromptTemplate.from_template(template)
+ask_prompt = ChatPromptTemplate.from_template(ask_template)
+summarize_prompt = ChatPromptTemplate.from_template(summarize_template)

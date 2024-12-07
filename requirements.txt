@@ -6,3 +6,7 @@ langchain-google-genai
 setuptools
 pydantic
 langchain_chroma
+uvicorn
+PyPDF2
+python-multipart
+chromadb
