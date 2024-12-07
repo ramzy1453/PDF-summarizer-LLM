@@ -2,3 +2,5 @@
 .env
 db
 __pycache__/
+*.py[cod]
+*.so
