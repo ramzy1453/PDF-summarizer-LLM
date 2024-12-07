@@ -9,5 +9,4 @@ app = FastAPI()
 def api():
     return {"message": "Hello World"}
 
-
 app.include_router(pdf_router, prefix="/api/v1/pdf", tags=["pdf"])
