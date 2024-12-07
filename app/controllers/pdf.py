@@ -8,13 +8,13 @@ from uuid import uuid4
 from app.models.pdf import AskQuestion
 from app.services.pdf import *
 
-async def upload_pdf_controller(file: UploadFile):
+async def upload_pdf_controller(pdf: UploadFile):
     try:
-        if file.content_type != "application/pdf":
+        if pdf.content_type != "application/pdf":
             raise HTTPException(status_code=404, detail="Invalid file type uploaded. Please upload a PDF file.")
         
-        pdf_bytes = await file.read()
-        response = upload_pdf_service(file.filename, pdf_bytes)
+        pdf_bytes = await pdf.read()
+        response = upload_pdf_service(pdf.filename, pdf_bytes)
         return response
     
     except Exception as e:

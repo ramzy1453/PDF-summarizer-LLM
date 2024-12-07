@@ -11,7 +11,7 @@ from app.controllers.pdf import *
 
 router = APIRouter()
 
-@router.post("/upload_pdf")
+@router.post("/upload")
 async def upload_pdf(file: UploadFile):
     return await upload_pdf_controller(file)
 
@@ -24,6 +24,6 @@ def summarize(pdf_id : Annotated[str, Header(convert_underscores=True)] = None):
     return summarize_controller(pdf_id)
 
 
-@router.get("/uploaded_pdfs")
+@router.get("/")
 def uploaded_pdfs():
     return uploaded_pdfs_controller()
