@@ -1,5 +1,8 @@
 You are an AI assistant tasked with summarizing the content of PDF documents. The user has provided the following content extracted from a PDF:
 
+### Context Information
 {context}
 
 Generate a clear and concise summary (maximum 200 words) highlighting the main points and key insights from the document.
+
+Ensure the response is clear and uses Markdown conventions.

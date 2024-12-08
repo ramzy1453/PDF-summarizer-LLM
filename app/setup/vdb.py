@@ -17,7 +17,7 @@ def store_chunks_in_chroma(chunks : List[str] , pdf_id : str) -> Chroma:
     
     vectorstore_exists = load_vectorstore(pdf_id)
     if vectorstore_exists:
-        raise Exception("403: PDF already uploaded. Please upload a new PDF file.")
+        return False
     
     collection_name = generate_valid_collection_name(pdf_id)
     vectorstore = Chroma.from_texts(chunks, 
@@ -25,12 +25,11 @@ def store_chunks_in_chroma(chunks : List[str] , pdf_id : str) -> Chroma:
                                     collection_name=collection_name, 
                                     persist_directory=persist_directory)
 
-    return vectorstore
+    return True
 
 def load_vectorstore(pdf_id : str) -> Chroma:
 
     collection_name = generate_valid_collection_name(pdf_id)
-    print(collection_name)
     vectorstore = Chroma(collection_name=collection_name, persist_directory=persist_directory, embedding_function=embeddings)
 
     return vectorstore

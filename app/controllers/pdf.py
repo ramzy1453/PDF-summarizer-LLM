@@ -21,11 +21,16 @@ async def upload_pdf_controller(pdf: UploadFile):
         return {"error": str(e)}
 
 def ask_question_controller(body : AskQuestion, pdf_id : str):
-    try:
 
+    try:
+        if pdf_id == 'undefined' or pdf_id is None:
+            raise HTTPException(status_code=404, detail="PDF is required to ask a question.")
         question = body.question
         answer = ask_question_service(question, pdf_id)
-        
+        print({
+            "answer" : answer,
+            "question" : question
+        })
         return {
             "answer" : answer
         }
@@ -34,8 +39,9 @@ def ask_question_controller(body : AskQuestion, pdf_id : str):
         return {"error": str(e)}
 
 def summarize_controller(pdf_id : str):
-    
     try:
+        if pdf_id == 'undefined' or pdf_id is None:
+            raise HTTPException(status_code=404, detail="PDF is required to summarize the PDF.")
         summary = summarize_pdf_service(pdf_id)
         return {"summary" : summary}
 
