@@ -14,12 +14,11 @@ embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001')
 
 def store_chunks_in_chroma(chunks : List[str] , pdf_id : str) -> Chroma:
 
+    collection_name = generate_valid_collection_name(pdf_id)
     
-    vectorstore_exists = load_vectorstore(pdf_id)
-    if vectorstore_exists:
+    if collection_name in get_uploaded_pdfs():
         return False
     
-    collection_name = generate_valid_collection_name(pdf_id)
     vectorstore = Chroma.from_texts(chunks, 
                                     embeddings, 
                                     collection_name=collection_name, 

@@ -17,7 +17,6 @@ app.add_middleware(
 
 app.mount("/media", StaticFiles(directory=Path('media')), name="media")
 
-
 @app.get("/")
 def api():
     return {"message": "PDF Summarizer API v1.0"}
