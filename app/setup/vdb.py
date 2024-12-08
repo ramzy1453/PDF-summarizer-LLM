@@ -1,5 +1,5 @@
 import os
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from app.utils.hash import generate_valid_collection_name
 from typing import List

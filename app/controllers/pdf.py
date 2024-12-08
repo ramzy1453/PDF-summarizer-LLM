@@ -27,6 +27,8 @@ def ask_question_controller(body : AskQuestion):
         if pdf_id == 'undefined' or pdf_id is None:
             raise HTTPException(status_code=404, detail="PDF is required to ask a question.")
         question = body.question
+        if question == '' or question is None:
+            raise HTTPException(status_code=404, detail="Question is required to ask a question.")
         answer = ask_question_service(question, pdf_id)
         return {
             "answer" : answer

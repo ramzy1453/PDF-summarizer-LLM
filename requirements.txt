@@ -5,8 +5,9 @@ langchain_core
 langchain-google-genai
 setuptools
 pydantic
-langchain_chroma
 uvicorn
 PyPDF2
 python-multipart
 chromadb
+langchain
+langchain-chroma
