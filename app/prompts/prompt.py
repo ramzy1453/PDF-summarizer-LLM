@@ -1,5 +1,4 @@
 from langchain.prompts import ChatPromptTemplate
-import os
 
 with open('app/prompts/ask_prompt.txt', 'r') as f:
     ask_template = f.read()

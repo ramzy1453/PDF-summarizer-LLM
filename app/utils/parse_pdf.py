@@ -1,7 +1,6 @@
 from PyPDF2 import PdfReader
 import io
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
 from typing import List
 
 def parse_pdf(pdf_bytes : bytes, chunk_it : bool = False, chunk_size : int = 200) -> str | List[str]:

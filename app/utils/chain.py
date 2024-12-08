@@ -1,6 +1,5 @@
 from langchain.schema.output_parser import StrOutputParser
-from langchain.schema.runnable import RunnableMap
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 from app.setup.llm import llm
 from app.prompts.prompt import ask_prompt, summarize_prompt
 
