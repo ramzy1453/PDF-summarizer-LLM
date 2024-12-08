@@ -5,7 +5,7 @@ from app.setup.vdb import store_chunks_in_chroma, load_vectorstore, get_uploaded
 from app.utils.chain import ask_in_pdf, summarize_pdf
 from app.utils.hash import get_pdf_hash
 from uuid import uuid4
-from app.models.pdf import AskQuestion
+from app.models.pdf import *
 from app.services.pdf import *
 
 async def upload_pdf_controller(pdf: UploadFile):
@@ -20,17 +20,14 @@ async def upload_pdf_controller(pdf: UploadFile):
     except Exception as e:
         return {"error": str(e)}
 
-def ask_question_controller(body : AskQuestion, pdf_id : str):
-
+def ask_question_controller(body : AskQuestion):
+    
+    pdf_id = body.pdf_id
     try:
         if pdf_id == 'undefined' or pdf_id is None:
             raise HTTPException(status_code=404, detail="PDF is required to ask a question.")
         question = body.question
         answer = ask_question_service(question, pdf_id)
-        print({
-            "answer" : answer,
-            "question" : question
-        })
         return {
             "answer" : answer
         }
@@ -38,9 +35,10 @@ def ask_question_controller(body : AskQuestion, pdf_id : str):
     except Exception as e:
         return {"error": str(e)}
 
-def summarize_controller(pdf_id : str):
+def summarize_controller(body : Summarize):
+    pdf_id = body.pdf_id
     try:
-        if pdf_id == 'undefined' or pdf_id is None:
+        if pdf_id is None:
             raise HTTPException(status_code=404, detail="PDF is required to summarize the PDF.")
         summary = summarize_pdf_service(pdf_id)
         return {"summary" : summary}
