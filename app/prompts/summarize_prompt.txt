@@ -7,8 +7,10 @@ You are an AI assistant tasked with summarizing the content of PDF documents. Th
 Generate a well-structured summary of the document, formatted in Markdown, using the following structure:
 
 1. **Overview**: Provide a concise overview of the document.
-2. **Key Insights**: Highlight the most important points and findings from the document.
+2. **Key Insights**: Highlight the most important points and findings from the document
 3. **Details**: Summarize specific sections or areas of focus, if applicable.
 4. **Conclusion**: Offer a brief conclusion that encapsulates the overall purpose or message of the document.
 
-Keep the summary concise (maximum 200 words) and ensure clarity using Markdown formatting.
+If there is a list of items, use bullet points to present them clearly for each section.
+
+Keep the summary concise (maximum 200 words) and ensure clarity using Markdown formatting and include line breaks for better readability.

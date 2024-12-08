@@ -11,4 +11,4 @@ Provide a precise and concise response to the user's question based on the conte
 
 **The information is not available in the document.**
 
-Ensure the response is clear and uses Markdown conventions.
+Ensure the response is clear and uses Markdown conventions and include line breaks for better readability.
