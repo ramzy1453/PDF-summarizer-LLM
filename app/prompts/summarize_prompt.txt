@@ -3,6 +3,12 @@ You are an AI assistant tasked with summarizing the content of PDF documents. Th
 ### Context Information
 {context}
 
-Generate a clear and concise summary (maximum 200 words) highlighting the main points and key insights from the document.
+### Your Task
+Generate a well-structured summary of the document, formatted in Markdown, using the following structure:
 
-Ensure the response is clear and uses Markdown conventions.
+1. **Overview**: Provide a concise overview of the document.
+2. **Key Insights**: Highlight the most important points and findings from the document.
+3. **Details**: Summarize specific sections or areas of focus, if applicable.
+4. **Conclusion**: Offer a brief conclusion that encapsulates the overall purpose or message of the document.
+
+Keep the summary concise (maximum 200 words) and ensure clarity using Markdown formatting.
