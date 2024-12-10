@@ -18,6 +18,7 @@ async def upload_pdf_controller(pdf: UploadFile):
 
 def ask_question_controller(body : AskQuestion):
     
+    print(body)
     pdf_id = body.pdf_id
     try:
         if pdf_id == 'undefined' or pdf_id is None:
